@@ -1,5 +1,7 @@
 package de.amehlen.obms.controller;
 
+import de.amehlen.obms.dto.request.UserRequestDTO;
+import de.amehlen.obms.dto.response.UserResponseDTO;
 import de.amehlen.obms.model.User;
 import de.amehlen.obms.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,8 +48,8 @@ public class UserController {
       }
   )
   @GetMapping
-  public ResponseEntity<List<User>> getAllUsers() {
-    List<User> users = userService.getAllUsers();
+  public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
+    List<UserResponseDTO> users = userService.getAllUsers();
     return new ResponseEntity<>(users, HttpStatus.OK);
   }
 
@@ -67,8 +69,8 @@ public class UserController {
       }
   )
   @GetMapping("/{id}")
-  public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long id) {
-    User user = userService.getUserById(id);
+  public ResponseEntity<UserResponseDTO> getUserById(@PathVariable(value = "id") Long id) {
+    UserResponseDTO user = userService.getUserById(id);
     return new ResponseEntity<>(user, HttpStatus.OK);
   }
 
@@ -89,9 +91,9 @@ public class UserController {
   )
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<User> createNewUser(@Valid @RequestBody User user) {
-    User newUser = userService.createNewUser(user);
-    return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+  public ResponseEntity<UserResponseDTO> createNewUser(@Valid @RequestBody UserRequestDTO userRequestDTO) {
+    UserResponseDTO user = userService.createNewUser(userRequestDTO);
+    return new ResponseEntity<>(user, HttpStatus.CREATED);
   }
 
   @Operation(
@@ -110,9 +112,9 @@ public class UserController {
       }
   )
   @PutMapping("/{id}")
-  public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id,
-      @Valid @RequestBody User user) {
-    User updatedUser = userService.updateUser(id, user);
+  public ResponseEntity<UserResponseDTO> updateUser(@PathVariable(value = "id") Long id,
+      @Valid @RequestBody UserRequestDTO userRequestDTO) {
+    UserResponseDTO updatedUser = userService.updateUser(id, userRequestDTO);
     return new ResponseEntity<>(updatedUser, HttpStatus.OK);
   }
 
