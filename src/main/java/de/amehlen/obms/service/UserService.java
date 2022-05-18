@@ -8,7 +8,6 @@ import de.amehlen.obms.model.User;
 import de.amehlen.obms.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,7 @@ public class UserService {
         .findAll()
         .stream()
         .map(user -> modelMapper.map(user, UserResponseDTO.class))
-        .collect(Collectors.toList());
+        .toList();
   }
 
   public UserResponseDTO getUserById(Long id) {
