@@ -27,8 +27,8 @@ public class SwaggerConfig {
 
   private ApiInfo apiInfo() {
     return new ApiInfoBuilder()
-        .title("Online Banking Management API")
-        .description("Online Banking Management API")
+        .title("Online Banking Management System API")
+        .description("Online Banking Management System API")
         .version("0.0.1")
         .build();
   }

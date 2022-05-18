@@ -2,7 +2,6 @@ package de.amehlen.obms.controller;
 
 import de.amehlen.obms.dto.request.UserRequestDTO;
 import de.amehlen.obms.dto.response.UserResponseDTO;
-import de.amehlen.obms.model.User;
 import de.amehlen.obms.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -42,7 +41,7 @@ public class UserController {
               responseCode = "200",
               content = @Content(
                   mediaType = "application/json",
-                  schema = @Schema(implementation = User.class)
+                  schema = @Schema(implementation = UserResponseDTO.class)
               )
           )
       }
@@ -63,7 +62,7 @@ public class UserController {
               responseCode = "200",
               content = @Content(
                   mediaType = "application/json",
-                  schema = @Schema(implementation = User.class)
+                  schema = @Schema(implementation = UserResponseDTO.class)
               )
           )
       }
@@ -84,14 +83,15 @@ public class UserController {
               responseCode = "201",
               content = @Content(
                   mediaType = "application/json",
-                  schema = @Schema(implementation = User.class)
+                  schema = @Schema(implementation = UserResponseDTO.class)
               )
           )
       }
   )
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<UserResponseDTO> createNewUser(@Valid @RequestBody UserRequestDTO userRequestDTO) {
+  public ResponseEntity<UserResponseDTO> createNewUser(
+      @Valid @RequestBody UserRequestDTO userRequestDTO) {
     UserResponseDTO user = userService.createNewUser(userRequestDTO);
     return new ResponseEntity<>(user, HttpStatus.CREATED);
   }
@@ -106,7 +106,7 @@ public class UserController {
               responseCode = "200",
               content = @Content(
                   mediaType = "application/json",
-                  schema = @Schema(implementation = User.class)
+                  schema = @Schema(implementation = UserResponseDTO.class)
               )
           )
       }
