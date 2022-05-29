@@ -3,9 +3,11 @@ package de.amehlen.obms.dto.request;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder(setterPrefix = "with")
 @Schema(name = "User Request")
 public class UserRequestDTO {
 
